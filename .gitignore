@@ -1,42 +1,42 @@
 # ==========================================
-# Unity - Pastas e Arquivos Gerados
+# Unity - Pastas e Arquivos Gerados (CapiJump)
 # ==========================================
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
-/[Mm]emoryCaptures/
+/CapiJump/[Ll]ibrary/
+/CapiJump/[Tt]emp/
+/CapiJump/[Oo]bj/
+/CapiJump/[Bb]uild/
+/CapiJump/[Bb]uilds/
+/CapiJump/[Ll]ogs/
+/CapiJump/[Uu]ser[Ss]ettings/
+/CapiJump/[Mm]emoryCaptures/
 
 # ==========================================
 # Projetos e Configurações de IDEs / Editores
 # ==========================================
 # Visual Studio
-.vs/
-/*.csproj
-/*.unityproj
-/*.sln
-/*.suo
-/*.user
-/*.userprefs
-/*.pidb
-/*.booproj
-/*.svd
-/*.pdb
-/*.opendb
-/*.idb
+/CapiJump/.vs/
+/CapiJump/*.csproj
+/CapiJump/*.unityproj
+/CapiJump/*.sln
+/CapiJump/*.suo
+/CapiJump/*.user
+/CapiJump/*.userprefs
+/CapiJump/*.pidb
+/CapiJump/*.booproj
+/CapiJump/*.svd
+/CapiJump/*.pdb
+/CapiJump/*.opendb
+/CapiJump/*.idb
 
 # Visual Studio Code
-.vscode/
+/CapiJump/.vscode/
 
 # JetBrains Rider
-.idea/
-*.sln.iml
+/CapiJump/.idea/
+/CapiJump/*.sln.iml
 
 # ==========================================
-# Arquivos de Sistema Operacional
+# Arquivos de Sistema Operacional (Globais)
 # ==========================================
 .DS_Store
 .DS_Store?
@@ -49,13 +49,13 @@ Thumbs.db
 # ==========================================
 # Pacotes da Unity e Asset Store
 # ==========================================
-*.unitypackage
-*.aab
-*.apk
-*.ipa
+/CapiJump/*.unitypackage
+/CapiJump/*.aab
+/CapiJump/*.apk
+/CapiJump/*.ipa
 
 # ==========================================
 # Crash Reports e Logs
 # ==========================================
-sysinfo.txt
-*.stackdump
+/CapiJump/sysinfo.txt
+/CapiJump/*.stackdump
