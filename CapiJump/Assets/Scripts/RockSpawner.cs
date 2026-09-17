@@ -2,65 +2,76 @@ using UnityEngine;
 
 public class RockSpawner : MonoBehaviour
 {
-    [Header("Prefabs")]
-    [Tooltip("Um ou mais prefabs de pedra — um é sorteado a cada spawn")]
-    public GameObject[] rockPrefabs;
+    [Header("Rock")]
+    public GameObject rockPrefab;
 
-    [Header("Timing")]
-    [Tooltip("Intervalo mínimo entre spawns (segundos)")]
-    public float minSpawnInterval = 1.5f;
-    [Tooltip("Intervalo máximo entre spawns (segundos)")]
-    public float maxSpawnInterval = 4f;
+    [Header("Spawn")]
+    public float spawnRangeX = 8f;
+    public float spawnHeight = 10f;
 
-    [Header("Posicionamento")]
-    [Tooltip("Altura acima do topo da câmera onde a pedra aparece")]
-    public float spawnHeightAboveCamera = 2f;
-    [Tooltip("Margem nas bordas laterais pra pedra não nascer colada na borda da tela")]
-    public float horizontalPadding = 0.5f;
+    [Header("Difficulty")]
+    public float initialSpawnInterval = 3f;
+    public float minimumSpawnInterval = 1f;
+    public float difficultyIncreaseTime = 30f;
+    public float intervalDecrease = 0.5f;
 
-    private Camera cam;
-    private float timer;
-    private float nextSpawnTime;
+    private float spawnTimer;
+    private float elapsedTime;
+
+    private Transform cameraTransform;
 
     private void Start()
     {
-        cam = Camera.main;
-        SetNextSpawnTime();
+        if (Camera.main != null)
+        {
+            cameraTransform = Camera.main.transform;
+        }
     }
 
     private void Update()
     {
-        if (GameManager.Instance != null && GameManager.Instance.IsGameOver)
-            return;
+        elapsedTime += Time.deltaTime;
 
-        timer += Time.deltaTime;
+        spawnTimer -= Time.deltaTime;
 
-        if (timer >= nextSpawnTime)
+        if (spawnTimer <= 0f)
         {
             SpawnRock();
-            timer = 0f;
-            SetNextSpawnTime();
+
+            spawnTimer = GetCurrentSpawnInterval();
         }
     }
 
-    private void SetNextSpawnTime()
+    private float GetCurrentSpawnInterval()
     {
-        nextSpawnTime = Random.Range(minSpawnInterval, maxSpawnInterval);
+        float difficultyLevel = Mathf.Floor(
+            elapsedTime / difficultyIncreaseTime
+        );
+
+        float currentInterval =
+            initialSpawnInterval -
+            (difficultyLevel * intervalDecrease);
+
+        return Mathf.Max(
+            currentInterval,
+            minimumSpawnInterval
+        );
     }
 
     private void SpawnRock()
     {
-        if (rockPrefabs == null || rockPrefabs.Length == 0 || cam == null)
+        if (cameraTransform == null || rockPrefab == null)
             return;
 
-        float camHalfWidth = cam.orthographicSize * cam.aspect;
-        float minX = cam.transform.position.x - camHalfWidth + horizontalPadding;
-        float maxX = cam.transform.position.x + camHalfWidth - horizontalPadding;
+        float x = cameraTransform.position.x + Random.Range(-spawnRangeX, spawnRangeX);
+        float y = cameraTransform.position.y + spawnHeight;
 
-        float spawnX = Random.Range(minX, maxX);
-        float spawnY = cam.transform.position.y + cam.orthographicSize + spawnHeightAboveCamera;
+        Vector3 spawnPosition = new Vector3(x, y, 0f);
 
-        GameObject prefab = rockPrefabs[Random.Range(0, rockPrefabs.Length)];
-        Instantiate(prefab, new Vector2(spawnX, spawnY), Quaternion.identity);
+        Instantiate(
+            rockPrefab,
+            spawnPosition,
+            Quaternion.identity
+        );
     }
 }
