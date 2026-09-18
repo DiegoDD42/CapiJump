@@ -4,7 +4,7 @@
 
 ## *1\. Resumo Executivo*
 
-* Título do Jogo: ini.pulo (Provisório)  
+* Título do Jogo: CapiJump 
 * Gênero: Plataforma vertical / Climbing Platformer  
 * Plataformas: PC, Mobile  
 * Público-alvo: Jogadores casuais de todas idades  
