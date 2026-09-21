@@ -137,3 +137,13 @@
 * Interface de Usuário: [Arte por Kenney](https://kenney-assets.itch.io/ui-pack) (via [itch.io](http://itch.io))  
 * Personagem: [Arte por Rainloaf](https://rainloaf.itch.io/capybara-sprite-sheet) (via [itch.io](http://itch.io))  
 * Plataformas e Objetos: [Arte por Kenney](https://kenney.nl/assets/pixel-platformer) (via [itch.io](http://itch.io))
+
+* ## Áudios e Efeitos Sonoros (via freesound)
+ - Pulo [https://freesound.org/people/LilMati/sounds/458884/]
+ - moeda [https://freesound.org/people/rigor789/sounds/341979/]
+ - powerup [https://freesound.org/people/Prof.Mudkip/sounds/422091/]
+ - dano [https://freesound.org/people/Raclure/sounds/458867/]
+ - vitoria [https://freesound.org/people/LittleRobotSoundFactory/sounds/270333/]
+
+   ### Trilha Sonora 
+- **Música da Fase [https://freesound.org/people/josefpres/sounds/645175/]
