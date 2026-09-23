@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Game Over!");
 
-        EndGame(gameOverPanel, finalCoinsText);
+        EndGame(gameOverPanel, finalCoinsText, SfxId.GameOver);
     }
 
     public void WinGame()
@@ -60,10 +60,10 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Vitória!");
 
-        EndGame(winPanel, finalCoinsWinText);
+        EndGame(winPanel, finalCoinsWinText, SfxId.Win);
     }
 
-    private void EndGame(GameObject panelToShow, TextMeshProUGUI coinsTextField)
+    private void EndGame(GameObject panelToShow, TextMeshProUGUI coinsTextField, string sfxId)
     {
         IsGameOver = true;
 
@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour
         {
             panelToShow.SetActive(true);
         }
+
+        AudioManager.Instance?.PlaySFX(sfxId);
 
         if (coinsTextField != null && CoinManager.Instance != null)
         {

@@ -19,12 +19,36 @@ public class PlayerController : MonoBehaviour
     private PlayerControls controls;
 
     private Vector2 moveInput;
-
     private bool isGrounded;
 
-    // --- Suporte a power-up de pulo (mola) ---
+    // =========================================================
+    // PROPRIEDADES USADAS PELO PLAYER ANIMATOR
+    // =========================================================
+
+    /// <summary>
+    /// Indica se o player está sobre uma plataforma.
+    /// Usado pelo PlayerAnimator para decidir entre Walk e Jump.
+    /// </summary>
+    public bool IsGrounded => isGrounded;
+
+    /// <summary>
+    /// Retorna a direção atual do movimento.
+    /// Usado pelo PlayerAnimator para fazer o Flip horizontal.
+    /// </summary>
+    public Vector2 MoveInput => moveInput;
+
+
+    // =========================================================
+    // POWER-UP DE PULO
+    // =========================================================
+
     private float jumpForceMultiplier = 1f;
     private Coroutine jumpBoostRoutine;
+
+
+    // =========================================================
+    // INICIALIZAÇÃO
+    // =========================================================
 
     private void Awake()
     {
@@ -32,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
         controls = new PlayerControls();
 
+        // Movimento
         controls.Player.Move.performed += ctx =>
         {
             moveInput = ctx.ReadValue<Vector2>();
@@ -42,11 +67,17 @@ public class PlayerController : MonoBehaviour
             moveInput = Vector2.zero;
         };
 
+        // Pulo
         controls.Player.Jump.performed += ctx =>
         {
             Jump();
         };
     }
+
+
+    // =========================================================
+    // INPUT SYSTEM
+    // =========================================================
 
     private void OnEnable()
     {
@@ -58,15 +89,26 @@ public class PlayerController : MonoBehaviour
         controls.Disable();
     }
 
+
+    // =========================================================
+    // UPDATE
+    // =========================================================
+
     private void Update()
     {
         CheckGround();
     }
 
+
     private void FixedUpdate()
     {
         Move();
     }
+
+
+    // =========================================================
+    // MOVIMENTO
+    // =========================================================
 
     private void Move()
     {
@@ -75,6 +117,11 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity.y
         );
     }
+
+
+    // =========================================================
+    // PULO
+    // =========================================================
 
     private void Jump()
     {
@@ -85,7 +132,14 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity.x,
             jumpForce * jumpForceMultiplier
         );
+        
+        AudioManager.Instance?.PlaySFX(SfxId.Jump);
     }
+
+
+    // =========================================================
+    // GROUND CHECK
+    // =========================================================
 
     private void CheckGround()
     {
@@ -94,22 +148,43 @@ public class PlayerController : MonoBehaviour
             groundCheckRadius,
             groundLayer
         );
+        Debug.Log("IsGrounded: " + isGrounded);
     }
 
 
+    // =========================================================
+    // POWER-UP DE PULO
+    // =========================================================
+
+    /// <summary>
+    /// Aplica um boost temporário na força do pulo.
+    /// </summary>
+    /// <param name="multiplier">
+    /// Multiplicador da força do pulo.
+    /// Exemplo: 1.8 = pulo 80% mais forte.
+    /// </param>
+    /// <param name="duration">
+    /// Duração do boost em segundos.
+    /// </param>
     public void ApplyJumpBoost(float multiplier, float duration)
     {
-        // Se já existe um boost ativo, cancela pra reiniciar a duração
-        // (evita que um boost antigo "expire" por cima de um novo)
+        // Se já houver um boost ativo,
+        // cancela o anterior para reiniciar a duração.
         if (jumpBoostRoutine != null)
         {
             StopCoroutine(jumpBoostRoutine);
         }
 
-        jumpBoostRoutine = StartCoroutine(JumpBoostCoroutine(multiplier, duration));
+        jumpBoostRoutine = StartCoroutine(
+            JumpBoostCoroutine(multiplier, duration)
+        );
     }
 
-    private IEnumerator JumpBoostCoroutine(float multiplier, float duration)
+
+    private IEnumerator JumpBoostCoroutine(
+        float multiplier,
+        float duration
+    )
     {
         jumpForceMultiplier = multiplier;
 
@@ -118,6 +193,11 @@ public class PlayerController : MonoBehaviour
         jumpForceMultiplier = 1f;
         jumpBoostRoutine = null;
     }
+
+
+    // =========================================================
+    // DEBUG DO GROUND CHECK
+    // =========================================================
 
     private void OnDrawGizmosSelected()
     {

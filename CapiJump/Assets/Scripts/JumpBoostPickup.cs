@@ -42,6 +42,8 @@ public class JumpBoostPickup : MonoBehaviour
             AudioSource.PlayClipAtPoint(collectSound, transform.position);
         }
 
+        AudioManager.Instance?.PlaySFX(SfxId.PowerUp);
+
         Destroy(gameObject);
     }
 }

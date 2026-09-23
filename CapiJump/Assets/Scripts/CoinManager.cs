@@ -22,6 +22,8 @@ public class CoinManager : MonoBehaviour
     {
         coins += amount;
 
+        AudioManager.Instance?.PlaySFX(SfxId.Coin);
+
         Debug.Log("Moedas: " + coins);
     }
 }
