@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9c8be36b0d42cc748a302f69cf7a4013
+guid: 5a6609751daf13a43b92fcd2de33e7d0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9088243055597523812
-    second: capivara_walk_0_0
+      213: -6397954313239356524
+    second: button_square_gloss_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,10 +48,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: capivara_walk_0_0
+      name: button_square_gloss_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 26
-        height: 22
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c9ce2bea71310e180800000000000000
-      internalID: -9088243055597523812
+      spriteID: 49b903e2376e537a0800000000000000
+      internalID: -6397954313239356524
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      capivara_walk_0_0: -9088243055597523812
+      button_square_gloss_0: -6397954313239356524
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
