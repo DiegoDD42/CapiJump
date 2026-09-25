@@ -19,7 +19,7 @@
   * Ambientação: A decidir.  
   * Personagens: Um único personagem jogável.  
 * Mecânicas de jogo:  
-  * Gameplay Core: O personagem salta para cima ao pressionar a tecla "espaço" ou tocar na tela.  
+  * Gameplay Core: O personagem salta para cima ao pressionar a tecla "espaço".  
   * Progressão: Terão obstáculos e power-ups conforme o nível prosseguir.  
   * Desafios: A quantidade de obstáculos aumenta ao escalar o nível.  
 * Estilo Visual:  
