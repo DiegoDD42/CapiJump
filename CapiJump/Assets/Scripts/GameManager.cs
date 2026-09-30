@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        AudioManager.Instance?.PlaySFX(SfxId.UIClick);
         IsGameOver = false;
         Time.timeScale = 1f;
 
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        AudioManager.Instance?.PlaySFX(SfxId.UIClick);
         Time.timeScale = 1f;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");

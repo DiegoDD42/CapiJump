@@ -13,4 +13,5 @@ public static class SfxId
     public const string PowerUp = "PowerUp";
     public const string GameOver = "GameOver";
     public const string Win = "Win";
+    public const string UIClick = "UIClick";
 }

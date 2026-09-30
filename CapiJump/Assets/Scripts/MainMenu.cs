@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        AudioManager.Instance?.PlaySFX(SfxId.UIClick);
         Time.timeScale = 1f;
 
         SceneManager.LoadScene(gameSceneName);
@@ -15,6 +16,7 @@ public class MainMenu : MonoBehaviour
 
     public void ExitGame()
     {
+        AudioManager.Instance?.PlaySFX(SfxId.UIClick);
         Debug.Log("Saindo do jogo...");
 
         Application.Quit();
